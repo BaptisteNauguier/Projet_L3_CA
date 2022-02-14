@@ -1,0 +1,10 @@
+Semaine 2 :
+Tri de la bd fait par Baptiste et Yoan 
+MCD MOD fait par Baptiste 
+Fiche triée de Trello par ordre d’importance fait par Chloé 
+Faire une page excel par catégorie de notre MOD et les mettre en sql fait par Léonardo
+
+Pendant la séance 3: 
+Vérification de la base de données sql
+Répartition des tâches:
+	- page d'accueil html Yoan

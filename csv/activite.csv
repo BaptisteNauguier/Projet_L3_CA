@@ -1,0 +1,102 @@
+id_activite;Activite_etablissement
+1;Alimentation générale
+2;Alimentation générale|Boucherie-Charcuterie
+3;Alimentation générale|Boulangerie-Pâtisserie
+4;Alimentation générale|Poissonnerie
+5;Alimentation générale|Rayon boucherie-charcuterie
+6;Alimentation générale|Rayon pain/viennoiserie/pâtisserie
+7;Alimentation générale|Rayon traiteur
+8;Alimentation générale|Rayon traiteur|Rayon boucherie-charcuterie
+9;Alimentation générale|Traiteur
+10;Alimentation générale|Traiteur|Boucherie-Charcuterie
+11;Boucherie-Charcuterie
+12;Boulangerie-Pâtisserie
+13;Boulangerie-Pâtisserie|Boucherie-Charcuterie
+14;Boulangerie-Pâtisserie|Glacier
+15;Boulangerie-Pâtisserie|Poissonnerie|Traiteur|Boucherie-Charcuterie
+16;Boulangerie-Pâtisserie|Traiteur
+17;Boulangerie-Pâtisserie|Traiteur|Boucherie-Charcuterie
+18;Chocolatier
+19;Chocolatier|Boulangerie-Pâtisserie
+20;Chocolatier|Boulangerie-Pâtisserie|Glacier
+21;Chocolatier|Glacier
+22;Fromagerie
+23;Fromagerie|Alimentation générale
+24;Fromagerie|Alimentation générale|Boucherie-Charcuterie
+25;Fromagerie|Alimentation générale|Boulangerie-Pâtisserie|Boucherie-Charcuterie
+26;Fromagerie|Alimentation générale|Boulangerie-Pâtisserie|Glacier|Poissonnerie|Traiteur
+27;Fromagerie|Alimentation générale|Boulangerie-Pâtisserie|Traiteur
+28;Fromagerie|Alimentation générale|Glacier
+29;Fromagerie|Alimentation générale|Glacier|Boucherie-Charcuterie
+30;Fromagerie|Alimentation générale|Traiteur|Boucherie-Charcuterie
+31;Fromagerie|Boucherie-Charcuterie
+32;Fromagerie|Boulangerie-Pâtisserie|Boucherie-Charcuterie
+33;Fromagerie|Boulangerie-Pâtisserie|Poissonnerie|Traiteur|Boucherie-Charcuterie
+34;Fromagerie|Boulangerie-Pâtisserie|Traiteur
+35;Fromagerie|Chocolatier|Traiteur|Boucherie-Charcuterie
+36;Fromagerie|Glacier|Poissonnerie|Traiteur|Boucherie-Charcuterie
+37;Fromagerie|Libre service
+38;Fromagerie|Libre service|Alimentation générale
+39;Fromagerie|Libre service|Alimentation générale|Boucherie-Charcuterie
+40;Fromagerie|Libre service|Alimentation générale|Boulangerie-Pâtisserie|Boucherie-Charcuterie
+41;Fromagerie|Libre service|Alimentation générale|Glacier
+42;Fromagerie|Traiteur
+43;Fromagerie|Traiteur|Boucherie-Charcuterie
+44;Glacier
+45;Libre service
+46;Libre service|Alimentation générale
+47;Libre service|Alimentation générale|Boucherie-Charcuterie
+48;Libre service|Alimentation générale|Boulangerie-Pâtisserie
+49;Libre service|Alimentation générale|Boulangerie-Pâtisserie|Boucherie-Charcuterie
+50;Libre service|Alimentation générale|Rayon pain/viennoiserie/pâtisserie
+51;Libre service|Alimentation générale|Rayon traiteur
+52;Libre service|Alimentation générale|Traiteur
+53;Libre service|Boucherie-Charcuterie
+54;Libre service|Rayon boucherie-charcuterie
+55;Libre service|Rayon fromagerie|Alimentation générale
+56;Libre service|Rayon fromagerie|Rayon traiteur|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+57;Libre service|Rayon pain/viennoiserie/pâtisserie
+58;Libre service|Rayon poissonnerie
+59;Libre service|Rayon poissonnerie|Rayon boucherie-charcuterie
+60;Libre service|Rayon poissonnerie|Rayon fromagerie|Alimentation générale|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+61;Libre service|Rayon poissonnerie|Rayon fromagerie|Rayon boucherie-charcuterie
+62;Libre service|Rayon poissonnerie|Rayon fromagerie|Rayon traiteur|Rayon boucherie-charcuterie
+63;Libre service|Rayon poissonnerie|Rayon fromagerie|Rayon traiteur|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+64;Libre service|Rayon poissonnerie|Rayon traiteur|Rayon boucherie-charcuterie
+65;Libre service|Rayon traiteur|Rayon boucherie-charcuterie
+66;Poissonnerie
+67;Poissonnerie|Boucherie-Charcuterie
+68;Poissonnerie|Traiteur
+69;Poissonnerie|Traiteur|Boucherie-Charcuterie
+70;Primeur
+71;Producteur fermier
+72;Rayon boucherie-charcuterie
+73;Rayon fromagerie
+74;Rayon fromagerie|Rayon boucherie-charcuterie
+75;Rayon fromagerie|Rayon pain/viennoiserie/pâtisserie
+76;Rayon fromagerie|Rayon traiteur
+77;Rayon fromagerie|Rayon traiteur|Rayon boucherie-charcuterie
+78;Rayon fromagerie|Rayon traiteur|Rayon pain/viennoiserie/pâtisserie
+79;Rayon fruits & légumes
+80;Rayon pain/viennoiserie/pâtisserie
+81;Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+82;Rayon poissonnerie
+83;Rayon poissonnerie|Alimentation générale
+84;Rayon poissonnerie|Rayon boucherie-charcuterie
+85;Rayon poissonnerie|Rayon fromagerie
+86;Rayon poissonnerie|Rayon fromagerie|Alimentation générale|Rayon boucherie-charcuterie
+87;Rayon poissonnerie|Rayon fromagerie|Rayon boucherie-charcuterie
+88;Rayon poissonnerie|Rayon fromagerie|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+89;Rayon poissonnerie|Rayon fromagerie|Rayon traiteur|Rayon boucherie-charcuterie
+90;Rayon poissonnerie|Rayon fromagerie|Rayon traiteur|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+91;Rayon poissonnerie|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+92;Rayon poissonnerie|Rayon traiteur|Rayon boucherie-charcuterie
+93;Rayon poissonnerie|Rayon traiteur|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+94;Rayon traiteur
+95;Rayon traiteur|Rayon boucherie-charcuterie
+96;Rayon traiteur|Rayon pain/viennoiserie/pâtisserie
+97;Rayon traiteur|Rayon pain/viennoiserie/pâtisserie|Rayon boucherie-charcuterie
+98;Restaurant
+99;Restauration collective
+100;Traiteur
+101;Traiteur|Boucherie-Charcuterie

@@ -39,7 +39,7 @@
     </table>
 
         <h2>
-            Les plus populaires:
+            Les plus populaires: </br>
         </h2>
 
     <table>
@@ -54,7 +54,7 @@
             while ($r_info = $info -> fetch()) {
 
                 echo 
-                '<td>'.$r_nom_popu['nom_etablissement'].'</br>
+                '<td>'.$r_info['nom_etablissement'].'</br>
                 <p> Site internet : </p> 
                 <a href="commerce.php?id_commerce=1"> lien site internet </a> </br>
                 <p> Localisation : </p> </br>

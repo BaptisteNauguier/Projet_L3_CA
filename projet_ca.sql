@@ -25346,7 +25346,7 @@ INSERT INTO `commerce_alimentaire` (`id_commerce`, `nom_etablissement`, `Adresse
 CREATE TABLE `donner` (
   `id_site` int(10) NOT NULL,
   `id_UI` int(10) NOT NULL,
-  `date` varchar(10) DEFAULT NULL
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

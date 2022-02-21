@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `activite` (
-  `id_activite` int(3) NOT NULL,
+  `id_activite` int(3) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `Activite_etablissement` varchar(134) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,8 +146,8 @@ INSERT INTO `activite` (`id_activite`, `Activite_etablissement`) VALUES
 --
 
 CREATE TABLE `commentaire_site` (
-  `id_site` int(10) NOT NULL,
-  `commentaire` varchar(10) DEFAULT NULL
+  `id_site` int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `commentaire` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -157,9 +157,9 @@ CREATE TABLE `commentaire_site` (
 --
 
 CREATE TABLE `commerce_alimentaire` (
-  `id_commerce` int(5) NOT NULL,
+  `id_commerce` int(5) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `nom_etablissement` varchar(120) DEFAULT NULL,
-  `Adresse` varchar(67) DEFAULT NULL,
+  `Adresse` text DEFAULT NULL,
   `Code_postal` varchar(5) DEFAULT NULL,
   `niveau_sanitaire` varchar(29) DEFAULT NULL,
   `coordonnee` varchar(22) DEFAULT NULL,
@@ -25393,7 +25393,7 @@ CREATE TABLE `historique` (
 --
 
 CREATE TABLE `lieux` (
-  `id_lieux` int(4) NOT NULL,
+  `id_lieux` int(4) PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `commune` varchar(35) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32280,12 +32280,12 @@ INSERT INTO `lieux` (`id_lieux`, `commune`) VALUES
 --
 
 CREATE TABLE `utilisateurs_inscrit` (
-  `id_UI` int(10) NOT NULL,
-  `nom` varchar(10) DEFAULT NULL,
-  `prenom` varchar(10) DEFAULT NULL,
-  `mail` varchar(10) DEFAULT NULL,
-  `pseudo` varchar(10) DEFAULT NULL,
-  `mdp` varchar(10) DEFAULT NULL
+  `id_UI` int(10) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `nom` varchar(30) DEFAULT NULL,
+  `prenom` varchar(30) DEFAULT NULL,
+  `mail` varchar(30) DEFAULT NULL,
+  `pseudo` varchar(30) DEFAULT NULL,
+  `mdp` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -32293,22 +32293,9 @@ CREATE TABLE `utilisateurs_inscrit` (
 --
 
 --
--- Indexes for table `activite`
---
-ALTER TABLE `activite`
-  ADD PRIMARY KEY (`id_activite`);
-
---
--- Indexes for table `commentaire_site`
---
-ALTER TABLE `commentaire_site`
-  ADD PRIMARY KEY (`id_site`);
-
---
 -- Indexes for table `commerce_alimentaire`
 --
 ALTER TABLE `commerce_alimentaire`
-  ADD PRIMARY KEY (`id_commerce`),
   ADD KEY `fklieu` (`id_lieux`),
   ADD KEY `fkact` (`id_activite`);
 
@@ -32339,18 +32326,6 @@ ALTER TABLE `forum_ca`
 ALTER TABLE `historique`
   ADD PRIMARY KEY (`id_UI`,`id_commerce`),
   ADD KEY `fkcoc` (`id_commerce`);
-
---
--- Indexes for table `lieux`
---
-ALTER TABLE `lieux`
-  ADD PRIMARY KEY (`id_lieux`);
-
---
--- Indexes for table `utilisateurs_inscrit`
---
-ALTER TABLE `utilisateurs_inscrit`
-  ADD PRIMARY KEY (`id_UI`);
 
 --
 -- Constraints for dumped tables

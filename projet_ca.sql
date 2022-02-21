@@ -25358,7 +25358,7 @@ CREATE TABLE `donner` (
 CREATE TABLE `favori` (
   `id_UI` int(10) NOT NULL,
   `id_commerce` int(10) NOT NULL,
-  `date` varchar(10) DEFAULT NULL
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -25371,7 +25371,7 @@ CREATE TABLE `forum_ca` (
   `id_UI` int(10) NOT NULL,
   `id_commerce` int(10) NOT NULL,
   `avis` varchar(10) DEFAULT NULL,
-  `date` varchar(10) DEFAULT NULL
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -25383,7 +25383,7 @@ CREATE TABLE `forum_ca` (
 CREATE TABLE `historique` (
   `id_UI` int(10) NOT NULL,
   `id_commerce` int(10) NOT NULL,
-  `date` varchar(10) DEFAULT NULL
+  `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

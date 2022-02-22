@@ -1,0 +1,110 @@
+/* COMMUNE A TOUTE LES PAGES */
+
+
+#titre {
+    width: 900px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+}
+
+body{
+    font-family:'source code pro', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, serif;
+    margin: 0px; /* reset css*/
+    padding: 0px; /* reset css*/
+}
+
+nav{
+    width : 100%;
+    background-color : #424558;
+}
+
+nav > ul{
+    margin: 0px; /* reset css*/
+    padding:0px; /* reset css*/
+}
+
+nav> ul::after{ /* sert a retablir la hauteur du menu*/
+    content:"";
+    display: block;
+    clear: both;
+}
+nav > ul > li{
+    float:left;
+    position: relative; /* placer les sous onglet sous les onglet*/
+}
+
+nav > ul > li > a{
+    padding: 20px 30px;
+    color: #FFF;
+}
+
+nav > ul > li:hover a{
+    padding: 15px 30px 20px 30px;
+}
+
+nav li{
+    list-style-type: none;
+}
+
+.submenu{
+    display: none; /* cache les sous onglets */
+}
+
+nav a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+nav li:hover .submenu{
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding: 0px;
+    z-index: 1000;
+}
+
+.submenu li{
+    border-bottom: 1px solid #CCC;
+}
+
+.submenu li a{
+    padding: 15px 30px;
+    font-size: 13px;
+    color: #222538;
+    width: 270px;
+}
+
+.menu-filtre:hover{
+    border-top: 5px solid #e44d26;
+    background-color: RGBa(228,77,38,0.15);
+}
+
+.menu-filtreAutre:hover{
+    border-top : 5px solid #0070bb;
+    background-color: RGBa(000,112,192,0.15)   
+}
+
+
+
+.menu-filtre .submenu{
+    background-color: RGB(230,100,40);
+}
+
+.menu-filtreAutre .submenu{
+    background-color: RGB(000,160,240);
+}
+
+.submenu li:hover a{
+    color: #EEE;
+    font-weight: bold;
+}
+.menu-filtre .submenu li:hover{
+    background-color: RGB(210, 77, 60);
+}
+
+.menu-filtreAutre .submenu li:hover{
+    background-color: RGB(000,115, 200);
+}
+

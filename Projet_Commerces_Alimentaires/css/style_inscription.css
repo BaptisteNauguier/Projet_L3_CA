@@ -1,0 +1,20 @@
+html, body {
+	margin: 0px auto;
+	text-align: center;
+	background-color: #ffff89;
+}
+
+p{
+	background-color: #333;
+	padding: 10px;
+	border-radius: 10px;
+	color: white;
+	margin-left: auto;
+    width: 400px;
+    margin-right: auto;
+}
+
+.submit{
+	background-color: #ffff89;
+}
+

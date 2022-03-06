@@ -3,9 +3,9 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+        <link rel="stylesheet" href="css/style_inscription.css" type="text/css" media="screen" />
         <meta charset="utf-8">
-        <title> Commerces Alimentaires </title>
+        <title> Inscription </title>
 
         <?php
             include('bd.php');
@@ -52,7 +52,7 @@ Confirmation mot de passe :
 <input type="password" name="mdp2" value=""/>
 </p>  
 
-<p>
+<p class="submit">
 <input type="submit" value="Valider">
 </p>
 </form>

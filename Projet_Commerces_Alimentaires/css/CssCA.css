@@ -1,5 +1,7 @@
 /* COMMUNE A TOUTE LES PAGES */
 
+ 
+
 
 #titre {
     width: 900px;
@@ -12,11 +14,13 @@ body{
     font-family:'source code pro', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif, serif;
     margin: 0px; /* reset css*/
     padding: 0px; /* reset css*/
+    
 }
 
 nav{
     width : 100%;
     background-color : #424558;
+    
 }
 
 nav > ul{
@@ -44,7 +48,7 @@ nav > ul > li:hover a{
 }
 
 nav li{
-    list-style-type: none;
+    list-style-type:none;
 }
 
 .submenu{
@@ -82,7 +86,7 @@ nav li:hover .submenu{
 }
 
 .menu-filtreAutre:hover{
-    border-top : 5px solid #0070bb;
+    border-top : 5px solid #0754a1;
     background-color: RGBa(000,112,192,0.15)   
 }
 
@@ -101,10 +105,20 @@ nav li:hover .submenu{
     font-weight: bold;
 }
 .menu-filtre .submenu li:hover{
-    background-color: RGB(210, 77, 60);
+    /*background-color: RGB(210, 77, 60);*/
+    background-color : red;
 }
 
 .menu-filtreAutre .submenu li:hover{
     background-color: RGB(000,115, 200);
 }
+
+::-webkit-scrollbar-thumb {
+    background-color: #e44d26;
+    height: 120px;
+}
+
+    
+
+
 

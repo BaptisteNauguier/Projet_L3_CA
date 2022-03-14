@@ -16,9 +16,7 @@
     <nav>
         <div class="flexBetween"> 
             <div class = " sizeLiens flexAround">
-                <div class = "sizeLien flexCentre bordureNav"><a class = "colorBleu decorationNone" href="#">a remplir </a> </div>
-                <div class = "sizeLien flexCentre bordureNav23"><a class = "colorBleu decorationNone" href="#">a remplir </a> </div>
-                <div class = "sizeLien flexCentre bordureNav23"><a class = "colorBleu decorationNone" href="#">a remplir </a> </div>
+                <div class = "sizeLien flexCentre bordureNav"><a class = "colorBleu decorationNone" href="../index.php">Page D'acceuil </a> </div>
             </div>
         </div>
     </nav>

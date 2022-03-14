@@ -23,10 +23,10 @@
         <tr>  <!-- Choix direction -->
 
             <td>
-            <a href="trouve_ton_commerce.php">Trouve ton commerce</a>
+            <a href="recherche_restaurant/filtrer1.php">Trouve ton commerce</a>
             </td>        
             <td>
-            <a href="forum.php">Forum</a>
+            <a href="./forum/">Forum</a>
             </td>
             <td>
             <a href="historique/historique.php">Historique</a>

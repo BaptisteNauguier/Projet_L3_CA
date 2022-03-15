@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-
-<html>
-
-    <head>
+<html lang="fr">
+	<head>
 
         <title> Deconnexion </title>
         <meta charset="utf-8">
 
-        <?
+        <?php
+		include('../bd.php');
+		$bdd = getBD();
 
             session_start();
             session_destroy();
+		 ?>
 
-            echo '<meta http-equiv="refresh" content=0;URL="../index.php">';
+        <meta http-equiv="refresh" content=0;URL="../index.php">
 
-        ?>
+       
 
     </head> 
 

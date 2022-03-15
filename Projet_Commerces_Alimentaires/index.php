@@ -23,16 +23,16 @@
         <tr>  <!-- Choix direction -->
 
             <td>
-            <a href="recherche_restaurant/filtrer1.php">Trouve ton commerce</a>
+            <a href="trouve/index.php">Trouve ton commerce</a>
             </td>        
             <td>
-            <a href="./forum/">Forum</a>
+            <a href="forum/index.php">Forum</a>
             </td>
             <td>
             <a href="historique/historique.php">Historique</a>
             </td> 
             <td>
-            <a href="connecte_toi.php">Connecte-toi</a>
+            <a href="page_commerce.php">Connecte-toi</a>
             </td>
 
         </tr>
@@ -47,28 +47,40 @@
 
         <?php          /* ligne pour site internet <a href="commerce.php?id_commerce='.$r_nom_popu['id_commerce'].'">'.$r_nom_popu['id_commerce'].'</a> </br> */
 
-            $info = $bdd -> query('Select id_commerce, nom_etablissement, coordonnee, niveau_sanitaire from commerce_alimentaire limit 3'); /* requete à finir - importation des données */
-            $avis = $bdd ->query('select avis from forum_ca, commerce_alimentaire where forum_ca.id_commerce=commerce_alimentaire.id_commerce limit 3');
-            $r_avis = $avis -> fetch();
+            $id = $bdd -> query('Select id_commerce FROM historique GROUP BY id_commerce ORDER BY COUNT(id_commerce) DESC LIMIT 3'); /* importation de l'id des commerces populaires */
 
-            while ($r_info = $info -> fetch()) {
+            while ($r_id = $id -> fetch()) {
 
-                echo 
-                '<td>'.$r_info['nom_etablissement'].'</br>
-                <p> Site internet : </p> 
-                <a href="commerce.php?id_commerce=1"> lien site internet </a> </br>
-                <p> Localisation : </p> </br>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184787.64737327248!2d3.841828357045498!3d43.64178090269305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b6af217be1ff51%3A0x26d70bd15039af4c!2sUniversit%C3%A9%20Paul-Val%C3%A9ry%20Montpellier%203!5e0!3m2!1sfr!2sfr!4v1644909270554!5m2!1sfr!2sfr" width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"></iframe> </br>
-                <p> Avis clients : </p> </br>'
-                .$r_avis['avis'].'
-                <p> Etat sanitaire : </p>'
-                .$r_info['niveau_sanitaire'].'</br></br></td>
-                '
-                ;
+                $donnee = $bdd -> query('Select DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.coordonnee, commerce_alimentaire.niveau_sanitaire, forum_ca.avis, lien_map.lien, utilisateurs_inscrit.pseudo
+                                        FROM forum_ca, commerce_alimentaire, lien_map, utilisateurs_inscrit
+                                        WHERE forum_ca.id_commerce=commerce_alimentaire.id_commerce
+                                        AND lien_map.id_commerce=commerce_alimentaire.id_commerce
+                                        AND utilisateurs_inscrit.id_UI=forum_ca.id_UI
+                                        AND commerce_alimentaire.id_commerce='.$r_id['id_commerce'].''); /* importation des données */
+
+
+                while ($r_donnee = $donnee -> fetch()) {
+
+                    echo 
+                    '<td>'.$r_donnee['nom_etablissement'].'</br>
+                    <p> Site internet : 
+                    <a href="page_commerce.php?id_commerce='.$r_id['id_commerce'].'"> lien site internet </a> </br>
+                    Localisation : </br>
+                    '.$r_donnee['lien'].'
+                    </br>
+                    Avis clients :'
+                    .$r_donnee['pseudo'].' :'
+                    .$r_donnee['avis'].'</br>
+                    Etat sanitaire :'
+                    .$r_donnee['niveau_sanitaire'].'</br> </p></td>
+                    '
+                    ;
+
+                }
+                $donnee -> closeCursor();
 
             }
-
-            $info -> closeCursor();
+            $id -> closeCursor();
         
         ?>
 

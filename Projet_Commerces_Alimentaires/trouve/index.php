@@ -6,11 +6,14 @@
 	<link href="../css/style_trouve.css" rel="stylesheet">
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- simbole de searchbar -->
+	<script type="text/javascript" src="../js/location.js"></script>
 	<title>Trouve ton commerce</title>
 
 <?php 
 include('../bd.php');
 $bdd = getBD();
+
+session_start();
 
 $rep = $bdd->query('select ca.id_activite, ac.Activite_etablissement, count(*) as populaires from commerce_alimentaire ca INNER JOIN activite ac ON ac.id_activite = ca.id_activite group by Activite_etablissement order by populaires DESC limit 13');
 
@@ -34,9 +37,18 @@ $rep = $bdd->query('select ca.id_activite, ac.Activite_etablissement, count(*) a
 			<li class="nav-item">
                 <a class="nav-link" href="../historique/historique.php">Historique</a>
             </li>
-			<li class="nav-item">
-                <a class="nav-link" href="../connecte_toi.php">Connecte-toi</a>
+			<?php if(isset($_SESSION['utilisateur'])) { ?>
+			<li class="nav-item dropdown">
+                <a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
+                <div class="dropdown-content">
+                        <a href='../session/deconnexion.php'>Se deconnecter</a>
+                </div>
             </li>
+			<?php }else{ ?>
+			<li class="nav-item">
+                <a class="nav-link" href="../session/connexion.php">Connecte-toi</a>
+            </li>
+			<?php } ?>
         </ul>
     </nav>
 	<!-- FIN MENU -->
@@ -46,16 +58,26 @@ $rep = $bdd->query('select ca.id_activite, ac.Activite_etablissement, count(*) a
 			<form action="search.php" method="GET">
 				<button type="submit"><i class="fa fa-search"></i></button>
 				<input type="text" id="s" placeholder="Recherchez votre commerce" name="s">							
-				<input type="hidden" name="lat" id="lat" /> 
-				<input type="hidden" name="lng" id="lng" />
-				<div id="infoposition"></div>
+				<input type="hidden" name="lat" class="lat" /> 
+				<input type="hidden" name="lng" class="lng" />
+				<input type="hidden" name="filtre" id="filtre" value="distance" />
 			</form>		
 		</div>
 		<div class="d-flex">
             <?php			
 				$i=1;				
-				while ($ligne = $rep ->fetch()) {	
-					echo "<div class='col'><a href='../recherche_restaurant/Activite.php?activite=".$ligne['Activite_etablissement']."' class='circleBase type".$i."'><p class='text-cercle'>".$ligne['Activite_etablissement']."</p></a></div>";
+				while ($ligne = $rep ->fetch()) { ?>	
+					<?php echo "<div class='col'>
+					<form action='search.php' method='GET'>
+						<button type='submit' class='circleBase type".$i."'>
+							<input type='hidden' name='s' value='".$ligne['Activite_etablissement']."' >							
+							<input type='hidden' name='lat' class='lat' /> 
+							<input type='hidden' name='lng' class='lng' />
+							<input type='hidden' name='filtre' id='filtre' value='distance' />							
+							<p class='text-cercle'>".$ligne['Activite_etablissement']."</p>
+						</button>
+					</form>
+					</div>";
 					$i=$i + 1;
 					if($i == 14)
 						$i = 1;
@@ -72,35 +94,6 @@ $rep = $bdd->query('select ca.id_activite, ac.Activite_etablissement, count(*) a
    $(document).ready(function() {
         navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true})	
     });
-		
-	function maPosition(position) {
-		var infopos = "Position déterminée :\n";
-		infopos += "Latitude : "+position.coords.latitude +"\n";
-		infopos += "Longitude: "+position.coords.longitude+"\n";
-		infopos += "Altitude : "+position.coords.altitude +"\n";
-		$("#lat").val(position.coords.latitude);
-		$("#lng").val(position.coords.longitude);
-	}
-	
-	// Fonction de callback en cas d’erreur
-	function erreurPosition(error) {
-		var info = "Erreur lors de la géolocalisation : ";
-		switch(error.code) {
-		case error.TIMEOUT:
-			info += "Timeout !";
-		break;
-		case error.PERMISSION_DENIED:
-		info += "Vous n’avez pas donné la permission";
-		break;
-		case error.POSITION_UNAVAILABLE:
-			info += "La position n’a pu être déterminée";
-		break;
-		case error.UNKNOWN_ERROR:
-			info += "Erreur inconnue";
-		break;
-		}		
-		document.getElementById("infoposition").innerHTML = info;	
-	}
 	</script>
 	
 </body>

@@ -19,34 +19,30 @@
             Historique des commerces visités
         </h1>
 
-        <table border="1">    <!-- création tableau / bord du tableau à faire sur css -->
+        <table border="1">    <!-- création tableau / tableau à faire sur css -->
             <tr>
-                <th>Id commerce</th>
                 <th>Nom établissement</th>
                 <th>Adresse</th>
                 <th>Code postal</th>
                 <th>Etat sanitaire</th>
                 <th>Coordonnée</th>
-                <th>Id lieux</th>
-                <th>Id activité</th>
+                <th>Date</th>
             </tr>
 
             <?php
 
-            $hist = $bdd -> query('select commerce_alimentaire.* FROM commerce_alimentaire, historique WHERE commerce_alimentaire.id_commerce=historique.id_commerce');
+            $hist = $bdd -> query('select commerce_alimentaire.*, historique.date FROM commerce_alimentaire, historique WHERE commerce_alimentaire.id_commerce=historique.id_commerce and id_UI='.$_SESSION['client']['id'].'');
 
             while ($r_hist = $hist -> fetch()) {
 
                 echo  /* affichage des données sous forme de tableau*/
                 '<tr>
-                <td>'.$r_hist['id_commerce'].'</td>
                 <td>'.$r_hist['nom_etablissement'].'</td>
                 <td>'.$r_hist['Adresse'].'</td>
-                <td>'.$r_hist['code_postal'].'</td>
+                <td>'.$r_hist['Code_postal'].'</td>
                 <td>'.$r_hist['niveau_sanitaire'].'</td>
                 <td>'.$r_hist['coordonnee'].'</td>
-                <td>'.$r_hist['id_lieux'].'</td>
-                <td>'.$r_hist['id_activite'].'</td>
+                <td>'.$r_hist['date'].'</td>
                 </tr>';
 
             }

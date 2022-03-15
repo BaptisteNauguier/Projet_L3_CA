@@ -8,6 +8,8 @@
         <title> Commerces Alimentaires </title> <!-- Titre de la page -->
 
         <?php
+		
+			session_start();
             include('bd.php');  #importation de la base de donnée
             $bdd = getBD();     
         ?>

@@ -10,8 +10,11 @@
 include('../bd.php');
 $bdd = getBD();
 
+session_start();
+
 $rep = $bdd->query('select * from commentaire_site cs INNER JOIN donner do ON do.id_site = cs.id_site INNER JOIN utilisateurs_inscrit ui ON ui.id_ui = do.id_ui');
 $count = $rep ->rowCount(); //compter s'il y en a des resultats
+
 
 
 ?>
@@ -42,6 +45,13 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 		<h2 class="text-center titre">Forum</h2>
 		<h3>Votre avis nous intéresse !</h3>
 		<p><b>Une remarque sur l'application, un commerce en particulier? Echangez avec les utilisateur de EzFood</b></p>
+		<form action="commentaire-forum.php" method="get" autocomplete="off">
+			Commentaire:
+			<textarea id="commen" name="commen" rows="4" cols="50"></textarea><br>
+			<input type="submit" name="submit" value="Envoyer">
+		</form>
+		<?php if(isset($_SESSION['client'])) { ?>
+		<?php } ?>
             <?php 
 				if($count > 0){ //si on a un commentaire afficher
 					while ($ligne = $rep ->fetch()) {	

@@ -5,7 +5,7 @@
     <head>	
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link href="../css/style_forum.css" rel="stylesheet">
+		<link href="../css/style.css" rel="stylesheet">
 		<title>Se connecter</title>
         <meta charset="utf-8">
 

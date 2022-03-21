@@ -1,8 +1,36 @@
 	function maPosition(position) {
 		$(".lat").val(position.coords.latitude);
 		$(".lng").val(position.coords.longitude);
-		
 	}
+	
+	function positionBubble(position) {
+		$(".lat").val(position.coords.latitude);
+		$(".lng").val(position.coords.longitude);
+		
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
+		
+		return coordonne(latitude, longitude);
+	}
+	
+	
+	function coordonne(latitude,longitude){		
+		d3.csv('./ocurrences.csv')
+		.then(data => {
+			BubbleChart(data, {
+			  label: d => [d.Activite, d.populaires].join("\n"),
+			  value: d => d.populaires,
+			  group: d => d.categorie,
+			  title: d => [d.Activite, d.populaires].join("\n"),
+			  link: d => `../trouve/search.php?s=${d.Activite}&lat=${latitude}&lng=${longitude}&filtre=distance`,
+			  width: 950
+			})
+		})
+		.catch(error => {
+			console.error('Error loading the data');
+		});
+	}
+
 	
 	// Fonction de callback en cas d’erreur
 	function erreurPosition(error) {

@@ -8,8 +8,6 @@
         <title> Commerces Alimentaires </title> <!-- Titre de la page -->
 
         <?php
-		
-			session_start();
             include('bd.php');  #importation de la base de donnée
             $bdd = getBD();     
         ?>
@@ -34,7 +32,7 @@
             <a href="historique/historique.php">Historique</a>
             </td> 
             <td>
-            <a href="page_commerce.php">Connecte-toi</a>
+            <a href="session/connexion.php">Connecte-toi</a>
             </td>
 
         </tr>
@@ -47,7 +45,7 @@
     <table>
         <tr>
 
-        <?php          /* ligne pour site internet <a href="commerce.php?id_commerce='.$r_nom_popu['id_commerce'].'">'.$r_nom_popu['id_commerce'].'</a> </br> */
+        <?php
 
             $id = $bdd -> query('Select id_commerce FROM historique GROUP BY id_commerce ORDER BY COUNT(id_commerce) DESC LIMIT 3'); /* importation de l'id des commerces populaires */
 
@@ -66,7 +64,7 @@
                     echo 
                     '<td>'.$r_donnee['nom_etablissement'].'</br>
                     <p> Site internet : 
-                    <a href="page_commerce.php?id_commerce='.$r_id['id_commerce'].'"> lien site internet </a> </br>
+                    <a href="page_commerce/page_commerce.php?id_commerce='.$r_id['id_commerce'].'"> lien site internet </a> </br>
                     Localisation : </br>
                     '.$r_donnee['lien'].'
                     </br>

@@ -95,26 +95,13 @@ group by Activite_etablissement order by populaires DESC limit 13');
 	   <script>
    
    $(document).ready(function() {
-        navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});	
+        navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
+		
+		navigator.geolocation.getCurrentPosition(positionBubble, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
+		
 	});
-		const lat = document.getElementById("lat").value;
-		const lng = document.getElementById("lng").value;
-
-		d3.csv('./ocurrences.csv')
-		.then(data => {
-			
-			BubbleChart(data, {
-			  label: d => [d.Activite, d.populaires].join("\n"),
-			  value: d => d.populaires,
-			  group: d => d.categorie,
-			  title: d => [d.Activite, d.populaires].join("\n"),
-			  link: d => `../trouve/search.php?s=${d.Activite}&lat=46.7111&lng=1.7191&filtre=distance`,
-			  width: 950
-			})
-		})
-		.catch(error => {
-			console.error('Error loading the data');
-		});
+	
+		
 	
 	</script>
 	

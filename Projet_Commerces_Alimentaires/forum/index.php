@@ -3,7 +3,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<link href="../css/style_forum.css" rel="stylesheet">
+	<link href="../css/style.css" rel="stylesheet">
 	<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- simboles -->
 	<title>Forum</title>
@@ -27,37 +27,51 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 <body>
 
 	<!-- MENU -->
-    <nav class="navbar">
-        <ul class="navbar-ul">
-            <li class="nav-item">
-                <a class="nav-link" href="../">Home</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="../trouve/index.php">Trouve ton commerce</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link active" href="#">Forum</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="../historique/historique.php">Historique</a>
-            </li>
-			
-			<!-- ------ MENU SI L'UTILISATEUR EST CONNECTE ------ -->
-			<?php if(isset($_SESSION['utilisateur'])) { ?>
-			<li class="nav-item dropdown">
-                <a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
-                <div class="dropdown-content">
-                        <a href='../session/deconnexion.php'>Se deconnecter</a>
-                </div>
-            </li>
-			<!-- ------ FIN MENU SI L'UTILISATEUR EST CONNECTE ------ -->
-			
-			<?php }else{ ?>
-			<li class="nav-item">
-                <a class="nav-link" href="../session/connexion.php">Connecte-toi</a>
-            </li>
-			<?php } ?>
-        </ul>
+    <nav class="navbar row">
+			<div class="col-1">
+				<ul class="navbar-ul">
+					<li class="nav-item">
+						<a class="nav-link" href="../"><i class="fa fa-home"></i></a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-2 text-center">
+				<ul class="navbar-ul">
+					<li class="nav-item">
+						<a class="nav-link" href="../trouve/">Trouve ton commerce</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link active" href="#">Forum</a>
+					</li>
+					<?php if(isset($_SESSION['utilisateur'])) { ?>
+					<li class="nav-item">
+						<a class="nav-link" href="../historique/historique.php">Historique</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../historique/historique.php">Favori</a>
+					</li>
+					<?php  } ?>
+				</ul>
+			</div>
+			<div class="col-3">
+				<ul class="navbar-ul menu-right">
+				<?php if(isset($_SESSION['utilisateur'])) { ?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
+						<div class="dropdown-content">
+								<a href='../session/deconnexion.php'>Se deconnecter</a>
+						</div>
+					</li>
+					<?php }else{ ?>
+					<li class="nav-item">
+						<a class="nav-link" href="../session/connexion.php">Se connecter</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../compte/inscription.php">S'inscrire</a>
+					</li>
+				<?php } ?>
+				</ul>
+			</div>
     </nav>
 	<!-- FIN MENU -->
 	<main>
@@ -101,12 +115,12 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 		<?php } ?>
 		<!-- ----------------------------------- -->
 		
-		<div class="d-flex">
+		<div class="avis">
             <?php 
 				if($count > 0){ //si on a un commentaire afficher
 					while ($ligne = $rep ->fetch()) {	
 						?>					
-						<div class="col">
+						<div class="col-forum">
 							<div class="d-flex">
 								<div class="p-photo"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
 								<p class="nom-date"><?php echo $ligne['pseudo']." " ?><small class="text-light"><?php echo date('d/m/Y H:i:s', strtotime($ligne['date'])); ?></small></p>
@@ -123,7 +137,8 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 										</form>
 									</div>								
 							<?php } ?>
-						</div> 
+						</div>
+						<div class="ligne"></div>
 			<?php
 					}
 				}else{ //si on a pas des commentaires

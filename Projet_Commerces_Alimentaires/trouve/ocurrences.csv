@@ -1,0 +1,20 @@
+id_activite,Activite,populaires,categorie
+98,Restaurant,10326,1
+99,Restauration collective,6987,2
+71,Producteur fermier,1859,3
+11,Boucherie-Charcuterie,1282,3
+12,Boulangerie-Pâtisserie,863,3
+46,Libre service|Alimentation générale,570,3
+45,Libre service,566,3
+1,Alimentation générale,334,4
+100,Traiteur,333,4
+72,Rayon boucherie-charcuterie,322,4
+66,Poissonnerie,285,4
+101,Traiteur|Boucherie-Charcuterie,257,4
+82,Rayon poissonnerie,243,4
+80,Rayon pain/viennoiserie/pâtisserie,129,4
+22,Fromagerie,101,4
+94,Rayon traiteur,74,5
+73,Rayon fromagerie,65,5
+2,Alimentation générale|Boucherie-Charcuterie,48,5
+16,Boulangerie-Pâtisserie|Traiteur,34,5

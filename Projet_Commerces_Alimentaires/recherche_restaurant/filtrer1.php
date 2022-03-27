@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../Projet_Commerces_Alimentaires/css/filtrer11.css" type="text/css"/>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/location.js"></script>
+
+
     <title>Filtres de recherches</title>
     <script src="https://kit.fontawesome.com/8e4619d166.js" crossorigin="anonymous"></script>
     <?php
@@ -30,11 +34,20 @@
         </div>
         <div class=" bordureSearch flexCentre">
             <div class="backGris flexCentre iconSize"><i class="fa-solid fa-location-pin"></i></div>
-            <div ><input class="recherche flexCentre bordureNone paddingSearch" 
-            type="search" 
+            <div>
+            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+            <input class="recherche flexCentre bordureNone paddingSearch" 
+            type="search"
+            name ="s"
             value="Marseille, France">
+            <input type ="hidden" name = "lat" class = "lat">
+            <input type ="hidden" name = "lng" class = "lng">
+            <input type ="hidden" name = "filtre" value= "distance">
             </div>
-            <div class = "backBleu flexCentre buttonSearch" >rechercher</div>
+            <div class = "backBleu flexCentre buttonSearch" >
+                <input type= "submit" value="rechercher">
+                </div>
+            </form>
             </div>
             <div class = "margFiltre">
                 <div class = "margFiltreTitre" >
@@ -148,7 +161,13 @@
                             <div class = "filtreIcons">
                                 <i class="fa-solid fa-shop fa-lg"></i>
                             </div>
-                                <a href="#">50 premier commerce</a>
+                            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "50p">
+                                <input type= "submit" value="50 premier commerce">
+                            </form>
+                            
                             </div>
                         </li> <!-- va contenir le nom des filtres -->
 
@@ -157,7 +176,12 @@
                             <div class = "filtreIcons">
                                 <i class="fa-solid fa-shop fa-lg"></i>
                             </div>
-                                <a href="#">commerce rayon de 50km</a>
+                            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "50km">
+                                <input type= "submit" value="commerce à un rayon de 50km">
+                             </form>
                             </div>
                         </li> 
                         </ul>
@@ -175,5 +199,11 @@
         
         
 </header>
+<script>
+   
+   $(document).ready( function() {
+	    navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
+   });
+</script>
 </body>
 </html>

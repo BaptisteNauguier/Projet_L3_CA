@@ -34,6 +34,9 @@
             <td>
             <a href="session/connexion.php">Connecte-toi</a>
             </td>
+            <td>
+                <a href="recherche_restaurant/filtrer1.php">Filtre</a>
+            </td>
 
         </tr>
     </table>

@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../Projet_Commerces_Alimentaires/css/filtrer11.css" type="text/css"/>
+    <link rel="stylesheet" href="../../Projet_Commerces_Alimentaires/css/style.css" type="text/css"/>
     <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="../js/location.js"></script>
 
@@ -61,7 +61,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg"></i>
                         </div>
-                            <a href="Activite.php?activite=boucherie">Boucherie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "boucherie">
+                                <input type= "submit" value="Boucherie">
+                            </form>
                     </div>
                 </li> <!-- va contenir le nom des filtres -->
                 <li class = "listeCoteNav">
@@ -69,7 +74,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=poissonnerie">Poissonnerie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "poissonnerie">
+                                <input type= "submit" value="Poissonnerie">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -77,7 +87,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=boulangerie">Boulangerie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "boulangerie">
+                                <input type= "submit" value="Boulangerie">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -85,7 +100,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=patisserie">Patisserie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "patisserie">
+                                <input type= "submit" value="Patisserie">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -93,7 +113,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=charcuterie">Charcuterie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "charcuterie">
+                                <input type= "submit" value="Charcuterie">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -101,7 +126,25 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=chocolatier">Chocolatier</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "chocolatier">
+                                <input type= "submit" value="Chocolatier">
+                            </form>
+                        </div>
+                </li>
+                <li class = "listeCoteNav">
+                    <div class = "flexBetween filtreTexteIcons">
+                        <div class = "filtreIcons">
+                            <i class="fa-solid fa-shop fa-lg "></i>
+                        </div>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "fromagerie">
+                                <input type= "submit" value="Fromagerie">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -109,7 +152,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=fromagerie">Fromagerie</a>
+                        <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "glacier">
+                                <input type= "submit" value="Glacier">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -117,7 +165,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=glacier">Glacier</a>
+                            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "restaurant">
+                                <input type= "submit" value="Restaurant">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -125,7 +178,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=restaurant">Restaurant</a>
+                            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "traiteur">
+                                <input type= "submit" value="Traiteur">
+                            </form>
                     </div>
                 </li>
                 <li class = "listeCoteNav">
@@ -133,15 +191,12 @@
                         <div class = "filtreIcons">
                             <i class="fa-solid fa-shop fa-lg "></i>
                         </div>
-                        <a href="Activite.php?activite=traiteur">Traiteur</a>
-                    </div>
-                </li>
-                <li class = "listeCoteNav">
-                    <div class = "flexBetween filtreTexteIcons">
-                        <div class = "filtreIcons">
-                            <i class="fa-solid fa-shop fa-lg "></i>
-                        </div>
-                        <a href="Activite.php?activite=autre">Autre</a>
+                            <form method= "get" action = "../trouve/search.php" autocomplete="OFF">
+                                <input type ="hidden" name = "lat" class = "lat">
+                                <input type ="hidden" name = "lng" class = "lng">
+                                <input type ="hidden" name = "filtre" value= "autre">
+                                <input type= "submit" value="Autre">
+                            </form>
                     </div>
                 </li>
                 </ul>

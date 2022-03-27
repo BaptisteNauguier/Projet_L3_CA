@@ -3,7 +3,7 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link href="../css/style.css" rel="stylesheet">	
+		<link href="../css/style_trouve.css" rel="stylesheet">	
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- simbole de searchbar -->		
 		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/location.js"></script>
@@ -19,10 +19,9 @@
 			
 			$search = trim($_GET["s"]); //on recupere le texte de la bar de recherche (trim c'est pour enlever les espaces initiales et eviter des recherches vides)			
 			$filtre = $_GET['filtre']; //on recupere le filtre (par defaut c'est la distance)
-			if(isset($_GET['lat'])){
-				$lat_utilisateur = $_GET['lat']; //latitude de l'utilisateur
-				$lng_utilisateur = $_GET['lng']; //longitude de l'utilisateur
-			}
+			$lat_utilisateur = $_GET['lat']; //latitude de l'utilisateur
+			$lng_utilisateur = $_GET['lng']; //longitude de l'utilisateur
+			
 		
 			$word = explode(" ",$search); //On divise les differents mots recherchez qui sont separées par un espace
 
@@ -42,6 +41,7 @@
 			if(isset($_GET['filtre']) && $search != ""){
 				// la variable distance est la distance entre les coodonées de l'utilisateur et celle du commerce
 				// {$string} est la variable créé pour stocker le WHERE 
+				
 				if($filtre == "distance"){
 					$rep = $bdd->query("SELECT DISTINCT *,(3959*acos(cos(radians({$lat_utilisateur})) * 
 						cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
@@ -68,8 +68,37 @@
 						sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance FROM commerce_alimentaire ca
 						inner join activite ac ON ac.id_activite = ca.id_activite 
 						inner join lieux li ON li.id_lieux = ca.id_lieux
-						ORDER BY ".$filtre." ASC LIMIT 20");
-				}else{
+						ORDER BY ".$filtre." ASC LIMIT 20");}
+
+				elseif($filtre == "50km"){
+					
+					
+					$rep = $bdd->query("SELECT DISTINCT *,(3959*acos(cos(radians({$lat_utilisateur})) * 
+					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
+					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
+					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance 
+					FROM commerce_alimentaire ca
+					inner join activite ac ON ac.id_activite = ca.id_activite 
+					inner join lieux li ON li.id_lieux = ca.id_lieux
+					where (3959*acos(cos(radians({$lat_utilisateur})) * 
+					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
+					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
+					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) <= 50 ORDER BY `distance` ASC ");
+
+
+
+				}
+				elseif($filtre == "50p"){
+					
+					$rep = $bdd->query("SELECT DISTINCT *,(3959*acos(cos(radians({$lat_utilisateur})) * 
+						cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
+						cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
+						sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance FROM commerce_alimentaire ca
+						inner join activite ac ON ac.id_activite = ca.id_activite 
+						inner join lieux li ON li.id_lieux = ca.id_lieux
+						ORDER BY distance ASC LIMIT 50");
+				}
+				else{
 					$rep = $bdd->query("SELECT DISTINCT *,(3959*acos(cos(radians({$lat_utilisateur})) * 
 						cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
 						cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
@@ -85,54 +114,39 @@
    </head>
    <body>
    <!-- MENU -->
-    <nav class="navbar row">
-			<div class="col-1">
-				<ul class="navbar-ul">
-					<li class="nav-item">
-						<a class="nav-link" href="../"><i class="fa fa-home"></i></a>
-					</li>
-				</ul>
-			</div>
-			<div class="col-2 text-center">
-				<ul class="navbar-ul">
-					<li class="nav-item">
-						<a class="nav-link active" href="./">Trouve ton commerce</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../forum/index.php">Forum</a>
-					</li>
-					<?php if(isset($_SESSION['utilisateur'])) { ?>
-					<li class="nav-item">
-						<a class="nav-link" href="../historique/historique.php">Historique</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../historique/historique.php">Favori</a>
-					</li>
-					<?php  } ?>
-				</ul>
-			</div>
-			<div class="col-3">
-				<ul class="navbar-ul menu-right">
-				<?php if(isset($_SESSION['utilisateur'])) { ?>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
-						<div class="dropdown-content">
-								<a href='../session/deconnexion.php'>Se deconnecter</a>
-						</div>
-					</li>
-					<?php }else{ ?>
-					<li class="nav-item">
-						<a class="nav-link" href="../session/connexion.php">Se connecter</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../compte/inscription.php">S'inscrire</a>
-					</li>
-				<?php } ?>
-				</ul>
-			</div>
+    <nav class="navbar">
+        <ul class="navbar-ul">
+            <li class="nav-item">
+                <a class="nav-link" href="../">Home</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link active" href="index.php">Trouve ton commerce</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="../forum/index.php">Forum</a>
+            </li>
+			<li class="nav-item">
+                <a class="nav-link" href="../historique/historique.php">Historique</a>
+            </li>
+			
+			<!-- ------ MENU SI L'UTILISATEUR EST CONNECTE ------ -->
+			<?php if(isset($_SESSION['utilisateur'])) { ?>
+			<li class="nav-item dropdown">
+                <a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
+                <div class="dropdown-content">
+                        <a href='../session/deconnexion.php'>Se deconnecter</a>
+                </div>
+            </li>
+			<!-- ------ FIN MENU SI L'UTILISATEUR EST CONNECTE ------ -->
+			<?php }else{ ?>
+			<li class="nav-item">
+                <a class="nav-link" href="../session/connexion.php">Connecte-toi</a>
+            </li>
+			<?php } ?>
+        </ul>
     </nav>
 	<!-- FIN MENU -->
-		<main class="mt-4">
+		<main>
 		<!-- ------ FORMULAIRE DE RECHERCHE ------ -->
 		<form action="search.php" method="GET">
 			<div class="search-container">
@@ -140,6 +154,7 @@
 				<input type="text" id="s" placeholder="Recherchez votre commerce" value="<?php echo $search ?>" name="s">							
 				<input type="hidden" name="lat" class="lat" /> 
 				<input type="hidden" name="lng" class="lng" />
+				<div id="infoposition"></div>	
 			</div>
 			<!-- ------ FIN FORMULAIRE DE RECHERCHE ------ -->
 			
@@ -180,7 +195,7 @@
 				}
 			?> 			
 			<article class="card">
-				
+				<header>
 					<div class="overlay">
 
 						<?php if(isset($_SESSION['utilisateur'])){ ?>				
@@ -207,18 +222,15 @@
 						<?php } ?>
 
 					</div>
-				<?php $str= $mat["Activite_etablissement"]; ?>
-				<header>
-					<div class="text-fixed">
+					<div class="info_eta">
 						<h2><?php echo $mat["nom_etablissement"]?></h2>
 						<b><?php echo ucwords($adresse).", ".$mat["Code_postal"].", ".$mat["commune"] ?></b>
-					</div>	
-					
+					</div>
 				</header>    
 				<div class="content">
 					<div class="col">
 						<b>
-							<?php 
+							<?php $str= $mat["Activite_etablissement"];
 							if(strlen($str)==62){
 								echo substr($str, 0, 31). ' ' . substr($str, 31);
 							}else echo $str;

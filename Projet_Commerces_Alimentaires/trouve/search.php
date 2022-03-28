@@ -97,20 +97,20 @@
 				}
 				elseif($filtre == "traiteur" or $filtre == "restaurant" or $filtre == "glacier" or $filtre == "fromagerie" or $filtre == "chocolatier" or $filtre == "charcuterie" 
 				or $filtre == "patisserie" or $filtre == "boulangerie" or $filtre == "poissonnerie" or $filtre == "boucherie"){
-					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, (3959*acos(cos(radians({$lat_utilisateur})) * 
+					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, activite.Activite_etablissement, (3959*acos(cos(radians({$lat_utilisateur})) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
 					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance
-					from commerce_alimentaire, activite
+					from commerce_alimentaire inner join activite on commerce_alimentaire.id_activite = activite.id_activite
 					where commerce_alimentaire.id_activite in (SELECT activite.id_activite from activite where activite.Activite_etablissement LIKE '%".$filtre."%')
 					ORDER BY distance ASC");
 				}
 				elseif($filtre == "autre"){
-					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, (3959*acos(cos(radians({$lat_utilisateur})) * 
+					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, activite.Activite_etablissement, (3959*acos(cos(radians({$lat_utilisateur})) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
 					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance
-					from commerce_alimentaire, activite
+					from commerce_alimentaire inner join activite on commerce_alimentaire.id_activite = activite.id_activite
 					where commerce_alimentaire.id_activite not in (SELECT activite.id_activite from activite where activite.Activite_etablissement LIKE '%boucherie%' 
 					or activite.Activite_etablissement LIKE '%poissonnerie%' or activite.Activite_etablissement LIKE '%boulangerie%' or activite.Activite_etablissement LIKE '%patisserie%'
 					or activite.Activite_etablissement LIKE '%charcuterie%' or activite.Activite_etablissement LIKE '%chocolatier%' or activite.Activite_etablissement LIKE '%fromagerie%'

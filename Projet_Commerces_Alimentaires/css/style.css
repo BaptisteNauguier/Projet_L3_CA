@@ -742,7 +742,7 @@ height: 100px;
 }
 
 .margFiltreTitre {
-  margin-right: 20px;
+  margin-right: 0px;
 }
 
 .filtreTexteIcons {
@@ -809,6 +809,32 @@ height: 100px;
   text-align: center;
   margin-right: auto;
   margin-left: auto;
+}
+
+.boutonFiltrer {
+  border:none;
+  background-color: white;
+  cursor:pointer;
+  margin-right: 120px;
+  font-size: 20px;
+
+}
+
+.centrerBouton{
+  width: 100%;
+  position: relative;
+  text-align:center;
+}
+
+#titreFiltrer {
+  text-align: center;
+  font-size: 30px;
+}
+
+.rechercherFiltrer {
+  border : none;
+  cursor: pointer;
+  background-color: blue;
 }
 
 /* ----  FIN PARTIE RECHERCHE_RESTAURANT/FILTRER1.PHP ---- */

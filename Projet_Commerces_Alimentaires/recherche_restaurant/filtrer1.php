@@ -17,10 +17,11 @@
         ?> 
 </head>
 <body class = "sizeNav">
+   <div class = "backgroundFiltrer1"> 
     <nav>
         <div class="flexBetween"> 
             <div class = " sizeLiens flexAround">
-                <div class = "sizeLien flexCentre bordureNav"><a class = "colorBleu decorationNone" href="../index.php">Page D'acceuil </a> </div>
+                <div class = "sizeLien flexCentre bordureNav"><a class = "colorBleu decorationNone plusGros" href="../index.php">Page D'acceuil </a> </div>
             </div>
         </div>
     </nav>
@@ -30,7 +31,9 @@
             <h1 id = "titreFiltrer" >
                 Trouver votre commerce alimentaire
             </h1 >
+    
             <h3 class = "h3Titre"> Rechercher par mots clefs </h3>
+        </div>
         </div>
         <div class=" bordureSearch flexCentre">
             <div class="backGris flexCentre iconSize"><i class="fa-solid fa-location-pin"></i></div>

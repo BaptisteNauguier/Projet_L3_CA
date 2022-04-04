@@ -20,13 +20,15 @@
             
         <h1> Vous avez oublié votre mot de passe ? </h1>
         
-        <form action="index.php" method="get" autocomplete="off">
+        <form action="mail.php" method="get" autocomplete="off">
             <p class="mail">
             Adresse mail :
             <input type="text" name="mail" value=""/>
             </p>
             
-            <p class="phrase"> Nous allons envoyer un mail avec un lien pour réinitialiser votre mot de passe </p>
+            <p class="phrase">
+            Nous allons envoyer un mail avec un lien pour réinitialiser votre mot de passe
+            </p>
                 
             <p>
             <input type="submit" value="Envoyer">

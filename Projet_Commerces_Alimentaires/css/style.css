@@ -162,6 +162,10 @@ padding: 14px;
 	color: #009d71 !important;
 }
 
+.mdpOublie{
+  color: red;
+}
+
 
 .frm-commentaire{
 	width: 350px;
@@ -829,6 +833,7 @@ height: 100px;
 #titreFiltrer {
   text-align: center;
   font-size: 30px;
+  color: white;
 }
 
 .rechercherFiltrer {
@@ -836,5 +841,15 @@ height: 100px;
   cursor: pointer;
   background-color: blue;
 }
+.backgroundFiltrer1{
+  background-image: url(../img/photoFiltrer14.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.plusGros{
+    font-size: 22px;
+}
+
 
 /* ----  FIN PARTIE RECHERCHE_RESTAURANT/FILTRER1.PHP ---- */

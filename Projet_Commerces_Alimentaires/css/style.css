@@ -972,3 +972,104 @@ height: 100px;
 
 
 /* ----  FIN PARTIE RECHERCHE_RESTAURANT/FILTRER1.PHP ---- */
+
+
+/* -------- PARTIE HISTORIQUE -------- */
+
+.hist{
+  text-align: center;
+}
+
+.hist h1{
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-decoration: underline;
+}
+
+.t_hist{
+  font-style: normal;
+  margin: auto;
+  border: #000 solid 2px;
+  border-collapse: collapse;
+  width: 1000px;
+  height: 50px;
+  margin-bottom: 50px;
+}
+
+.div_hist{
+  margin: auto;
+  width: 1015px;
+  overflow-y: scroll;
+  height: 600px;
+}
+
+/* -------- FIN PARTIE HISTORIQUE -------- */
+
+
+
+/* -------- PARTIE INDEX -------- */
+
+.head-index {
+background-image: url(../img/c.png);
+background-repeat: no-repeat;
+padding-bottom: 60px;
+background-size: cover;
+width: 100%;
+}
+
+#t-index {
+text-align: center;
+margin-top: 0px;
+padding-bottom: 20px;
+padding-top: 20px;
+font-size: 40px;
+}
+
+#t2-index{
+margin-left: 6%;
+text-decoration: underline;
+}
+
+.main-index{
+text-align: center;
+}
+
+.main-index .plus-pop {
+padding: 30px;
+width: 400px;
+display: inline-block; /* segmentation en ligne des div */
+}
+
+.main-index .plus-pop .block{
+display: flex;
+}
+
+.main-index .plus-pop .avis{
+display: inline-block; /* segmentation en ligne des div */
+border-right: 2px solid black;
+width: 50%;
+margin: auto;
+text-align: left;
+padding-left: 10px;
+word-wrap: break-word;
+}
+
+.main-index .plus-pop .etat{
+width: 50%;
+text-align: left;
+padding-left: 10px;
+}
+
+.main-index .plus-pop h3{
+background-color: #f67438;
+border-radius: 15px;
+text-align: center;
+}
+
+.main-index .plus-pop a{
+text-decoration: none;
+color: #006f93;
+font-style: italic;
+}
+
+/* -------- FIN PARTIE INDEX -------- */

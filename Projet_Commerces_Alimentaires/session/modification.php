@@ -13,18 +13,20 @@
 			$mdp_nouveau =trim($_POST['mdp2']);
 			$pseudo = trim($_POST['pseudo']);
 
-            if ($mdp_ancien == "" && $mdp_nouveau == "") {
-					echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20mdp%20doit%20avoir%20au%20moins%20un%20caractère">';
-				if($pseudo == ""){
-					echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20psedo%20ne%20peut%20pas%20être%20vide">';
-				}else{
+            if ($mdp_ancien != "" && $mdp_nouveau != "") {
+				if($mdp_ancien == $mdp_nouveau ){
+					echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20nouveau%20mdp%20doit%20être%20different">';
+				}else{	
+					if($pseudo != ""){
+						enregistrer($_SESSION['utilisateur']['id'], $pseudo, SHA1($mdp_ancien), SHA1($mdp_nouveau));
+					}else echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20psedo%20ne%20peut%20pas%20être%20vide">';
+				}
+				
+            }else if($mdp_ancien == "" && $mdp_nouveau == "" && $pseudo != ""){
 					enregistrer_pseudo($_SESSION['utilisateur']['id'], $pseudo);
 				}
-            }else if($mdp_ancien == $mdp_nouveau ){
-				echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20nouveau%20mdp%20doit%20être%20different">';
-			}
             else{
-                enregistrer($_SESSION['utilisateur']['id'], $pseudo, SHA1($mdp_ancien), SHA1($mdp_nouveau));
+                echo '<meta http-equiv="refresh" content=0;URL="profil.php?message=Le%20mot%20de%20passe%20doit%20avoir%20au%20moins%20un%20caractère">';
             }
 
         ?>
@@ -54,9 +56,9 @@
 							
 						echo '<meta http-equiv="Refresh" content="0; URL=profil.php?verification='.$message.'">';
 					}else{
-						$message = "Le mdp n'est pas correcte";
+						$message = "Le mot de passe n'est pas correcte";
 							
-						echo '<meta http-equiv="Refresh" content="0; URL=profil.php?verification='.$message.'">';
+						echo '<meta http-equiv="Refresh" content="0; URL=profil.php?message='.$message.'">';
 					}
 					
 		
@@ -69,8 +71,7 @@
                     
                     include('../bd.php');
         
-                    $bdd = getBD();
-					
+                    $bdd = getBD();					
 		
 					$sql = "UPDATE utilisateurs_inscrit SET pseudo = ? WHERE id_UI = {$id}"; 
 					$insert = $bdd->prepare($sql);

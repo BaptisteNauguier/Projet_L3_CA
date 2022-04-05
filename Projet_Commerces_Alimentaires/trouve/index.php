@@ -50,7 +50,7 @@ group by Activite_etablissement order by populaires DESC limit 13');
 						<a class="nav-link" href="../historique/historique.php">Historique</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../historique/historique.php">Favori</a>
+						<a class="nav-link" href="../favori/">Favori</a>
 					</li>
 					<?php  } ?>
 				</ul>
@@ -61,6 +61,7 @@ group by Activite_etablissement order by populaires DESC limit 13');
 					<li class="nav-item dropdown">
 						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
 						<div class="dropdown-content">
+								<a href='../session/profil.php'>Mon profil</a>
 								<a href='../session/deconnexion.php'>Se deconnecter</a>
 						</div>
 					</li>
@@ -82,9 +83,15 @@ group by Activite_etablissement order by populaires DESC limit 13');
 			<div class="search-container">
 				<form action="search.php" method="GET">
 					<button type="submit"><i class="fa fa-search"></i></button>
-					<input type="text" id="s" placeholder="Recherchez votre commerce" name="s">							
-					<input type="hidden" name="lat" class="lat" id="lat" /> 
-					<input type="hidden" name="lng" class="lng" id="lng"/>
+					<input type="text" id="s" placeholder="Recherchez votre commerce" name="s">	
+					<a class="decorationNone" href="../recherche_restaurant/filtrer1.php"><i class="fa fa-sliders" aria-hidden="true"></i> Filtre</a>
+					<?php if(isset($_SESSION['utilisateur'])){ ?>
+						<input type="hidden" name="lat" class="lat" value="<?php echo $_SESSION['utilisateur']['lat'] ?>" /> 
+						<input type="hidden" name="lng" class="lng" value="<?php echo $_SESSION['utilisateur']['lng'] ?>"/>
+					<?php }else{?>
+						<input type="hidden" name="lat" class="lat"  /> 
+						<input type="hidden" name="lng" class="lng" />
+					<?php }?>
 					<input type="hidden" name="filtre" id="filtre" value="distance" />
 				</form>		
 			</div>
@@ -95,10 +102,7 @@ group by Activite_etablissement order by populaires DESC limit 13');
 	   <script>
    
    $(document).ready(function() {
-        navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
-		
 		navigator.geolocation.getCurrentPosition(positionBubble, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
-		
 	});
 	
 		

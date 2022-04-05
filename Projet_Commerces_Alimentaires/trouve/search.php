@@ -19,9 +19,10 @@
 			
 			$search = trim($_GET["s"]); //on recupere le texte de la bar de recherche (trim c'est pour enlever les espaces initiales et eviter des recherches vides)			
 			$filtre = $_GET['filtre']; //on recupere le filtre (par defaut c'est la distance)
-			$lat_utilisateur = $_GET['lat']; //latitude de l'utilisateur
-			$lng_utilisateur = $_GET['lng']; //longitude de l'utilisateur
-			
+			if(isset($_GET['lat'])){
+				$lat_utilisateur = $_GET['lat']; //latitude de l'utilisateur
+				$lng_utilisateur = $_GET['lng']; //longitude de l'utilisateur
+			}
 		
 			$word = explode(" ",$search); //On divise les differents mots recherchez qui sont separées par un espace
 
@@ -41,7 +42,6 @@
 			if(isset($_GET['filtre']) && $search != ""){
 				// la variable distance est la distance entre les coodonées de l'utilisateur et celle du commerce
 				// {$string} est la variable créé pour stocker le WHERE 
-				
 				if($filtre == "distance"){
 					$rep = $bdd->query("SELECT DISTINCT *,(3959*acos(cos(radians({$lat_utilisateur})) * 
 						cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
@@ -57,8 +57,7 @@
 						sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance FROM commerce_alimentaire ca
 						inner join activite ac ON ac.id_activite = ca.id_activite 
 						inner join lieux li ON li.id_lieux = ca.id_lieux
-						where {$string} ORDER BY ".$filtre." DESC,distance ASC");
-					
+						where {$string} ORDER BY ".$filtre." DESC,distance ASC");	
 				}	
 			}else{
 				if($filtre == "distance"){
@@ -97,20 +96,24 @@
 				}
 				elseif($filtre == "traiteur" or $filtre == "restaurant" or $filtre == "glacier" or $filtre == "fromagerie" or $filtre == "chocolatier" or $filtre == "charcuterie" 
 				or $filtre == "patisserie" or $filtre == "boulangerie" or $filtre == "poissonnerie" or $filtre == "boucherie"){
-					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, activite.Activite_etablissement, (3959*acos(cos(radians({$lat_utilisateur})) * 
+					$rep = $bdd->query("SELECT DISTINCT *, (3959*acos(cos(radians({$lat_utilisateur})) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
 					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance
-					from commerce_alimentaire inner join activite on commerce_alimentaire.id_activite = activite.id_activite
+					from commerce_alimentaire 
+					inner join activite on commerce_alimentaire.id_activite = activite.id_activite
+					inner join lieux li ON li.id_lieux = commerce_alimentaire.id_lieux
 					where commerce_alimentaire.id_activite in (SELECT activite.id_activite from activite where activite.Activite_etablissement LIKE '%".$filtre."%')
 					ORDER BY distance ASC");
 				}
 				elseif($filtre == "autre"){
-					$rep = $bdd->query("SELECT DISTINCT commerce_alimentaire.nom_etablissement, commerce_alimentaire.niveau_sanitaire , commerce_alimentaire.Adresse,commerce_alimentaire.id_commerce, activite.Activite_etablissement, (3959*acos(cos(radians({$lat_utilisateur})) * 
+					$rep = $bdd->query("SELECT DISTINCT *, (3959*acos(cos(radians({$lat_utilisateur})) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', 1))) * 
 					cos(radians(SUBSTRING_INDEX(coordonnee, ',', -1)) - radians({$lng_utilisateur})) + 
 					sin(radians({$lat_utilisateur})) * sin(radians(SUBSTRING_INDEX(coordonnee, ',', 1))))) AS distance
-					from commerce_alimentaire inner join activite on commerce_alimentaire.id_activite = activite.id_activite
+					from commerce_alimentaire 
+					inner join activite on commerce_alimentaire.id_activite = activite.id_activite
+					inner join lieux li ON li.id_lieux = commerce_alimentaire.id_lieux
 					where commerce_alimentaire.id_activite not in (SELECT activite.id_activite from activite where activite.Activite_etablissement LIKE '%boucherie%' 
 					or activite.Activite_etablissement LIKE '%poissonnerie%' or activite.Activite_etablissement LIKE '%boulangerie%' or activite.Activite_etablissement LIKE '%patisserie%'
 					or activite.Activite_etablissement LIKE '%charcuterie%' or activite.Activite_etablissement LIKE '%chocolatier%' or activite.Activite_etablissement LIKE '%fromagerie%'
@@ -133,64 +136,85 @@
    </head>
    <body>
    <!-- MENU -->
-    <nav class="navbar">
-        <ul class="navbar-ul">
-            <li class="nav-item">
-                <a class="nav-link" href="../">Home</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link active" href="index.php">Trouve ton commerce</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="../forum/index.php">Forum</a>
-            </li>
-			<li class="nav-item">
-                <a class="nav-link" href="../historique/historique.php">Historique</a>
-            </li>
-			
-			<!-- ------ MENU SI L'UTILISATEUR EST CONNECTE ------ -->
-			<?php if(isset($_SESSION['utilisateur'])) { ?>
-			<li class="nav-item dropdown">
-                <a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
-                <div class="dropdown-content">
-                        <a href='../session/deconnexion.php'>Se deconnecter</a>
-                </div>
-            </li>
-			<!-- ------ FIN MENU SI L'UTILISATEUR EST CONNECTE ------ -->
-			<?php }else{ ?>
-			<li class="nav-item">
-                <a class="nav-link" href="../session/connexion.php">Connecte-toi</a>
-            </li>
-			<?php } ?>
-        </ul>
+    <nav class="navbar row">
+			<div class="col-1">
+				<ul class="navbar-ul">
+					<li class="nav-item">
+						<a class="nav-link" href="../"><i class="fa fa-home"></i></a>
+					</li>
+				</ul>
+			</div>
+			<div class="col-2 text-center">
+				<ul class="navbar-ul">
+					<li class="nav-item">
+						<a class="nav-link active" href="./">Trouve ton commerce</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../forum/index.php">Forum</a>
+					</li>
+					<?php if(isset($_SESSION['utilisateur'])) { ?>
+					<li class="nav-item">
+						<a class="nav-link" href="../historique/historique.php">Historique</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../favori/">Favori</a>
+					</li>
+					<?php  } ?>
+				</ul>
+			</div>
+			<div class="col-3">
+				<ul class="navbar-ul menu-right">
+				<?php if(isset($_SESSION['utilisateur'])) { ?>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
+						<div class="dropdown-content">
+								<a href='../session/profil.php'>Mon profil</a>
+								<a href='../session/deconnexion.php'>Se deconnecter</a>
+						</div>
+					</li>
+					<?php }else{ ?>
+					<li class="nav-item">
+						<a class="nav-link" href="../session/connexion.php">Se connecter</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../compte/inscription.php">S'inscrire</a>
+					</li>
+				<?php } ?>
+				</ul>
+			</div>
     </nav>
 	<!-- FIN MENU -->
-		<main>
+		<main class="mt-4">
 		<!-- ------ FORMULAIRE DE RECHERCHE ------ -->
 		<form action="search.php" method="GET">
 			<div class="search-container">
 				<button type="submit"><i class="fa fa-search"></i></button>
-				<input type="text" id="s" placeholder="Recherchez votre commerce" value="<?php echo $search ?>" name="s">							
-				<input type="hidden" name="lat" class="lat" /> 
-				<input type="hidden" name="lng" class="lng" />
-				<div id="infoposition"></div>	
+				<input type="text" id="s" placeholder="Recherchez votre commerce" value="<?php echo $search ?>" name="s">
+				<a class="decorationNone" href="../recherche_restaurant/filtrer1.php"><i class="fa fa-sliders" aria-hidden="true"></i> Filtre</a>				
+				<?php if(isset($_SESSION['utilisateur'])){ ?>
+						<input type="hidden" name="lat" class="lat" value="<?php echo $_SESSION['utilisateur']['lat'] ?>" /> 
+						<input type="hidden" name="lng" class="lng" value="<?php echo $_SESSION['utilisateur']['lng'] ?>"/>
+					<?php }else{?>
+						<input type="hidden" name="lat" class="lat"  /> 
+						<input type="hidden" name="lng" class="lng" />
+					<?php }?>
 			</div>
 			<!-- ------ FIN FORMULAIRE DE RECHERCHE ------ -->
 			
-			<div class="d-flex">
+			<div class="d-flex mt-4">
 				<div class="col">
 				<?php echo "<span class='ml-4'>".$row." résultat(s) pour \"".$search."\"</span>"; ?>
 				</div>
-				<div class="col filtre">
+				<div class="col filtrer">
 					<div class="right">
 						<i class="fa fa-sliders" aria-hidden="true"></i>
 						<select id="filtre" name="filtre">
-							<?php if($filtre == "distance"){ ?>
+							<?php if($filtre == "niveau_sanitaire"){ ?>
+							<option value="distance" >Commerces les plus proches</option>
+							<option value="niveau_sanitaire" selected>Etat sanitaire</option>
+							<?php }else{ ?>
 							<option value="distance" selected>Commerces les plus proches</option>
 							<option value="niveau_sanitaire">Etat sanitaire</option>
-							<?php }else{ ?>
-							<option value="distance">Commerces les plus proches</option>
-							<option value="niveau_sanitaire" selected>Etat sanitaire</option>
 							<?php } ?>
 							
 						</select>
@@ -214,7 +238,7 @@
 				}
 			?> 			
 			<article class="card">
-				<header>
+				
 					<div class="overlay">
 
 						<?php if(isset($_SESSION['utilisateur'])){ ?>				
@@ -229,27 +253,34 @@
 							<b>Favori</b>
 						</div>					
 						<div class="line"></div>
-						<div class="plus">						
-							<i class="fa fa-plus" aria-hidden="true"></i><br>
-							<b>Voir plus</b>
-						</div>
+						<a class="a-none" href="../page_commerce/page_commerce.php?id_commerce=<?php echo $mat['id_commerce']?>">
+							<div class="plus">						
+								<i class="fa fa-plus" aria-hidden="true"></i><br>
+								<b>Voir plus</b>
+							</div>
+						</a>
 						<?php }else{ ?>
-						<div class="plus alone">						
-							<i class="fa fa-plus" aria-hidden="true"></i><br>
-							<b>Voir plus</b>
-						</div>
+						<a class="a-none" href="../page_commerce/page_commerce.php?id_commerce=<?php echo $mat['id_commerce']?>">
+							<div class="plus alone">						
+								<i class="fa fa-plus" aria-hidden="true"></i><br>
+								<b>Voir plus</b>
+							</div>
+						</a>
 						<?php } ?>
 
 					</div>
-					<div class="info_eta">
+				<?php $str= $mat["Activite_etablissement"]; ?>
+				<header>
+					<div class="text-fixed">
 						<h2><?php echo $mat["nom_etablissement"]?></h2>
 						<b><?php echo ucwords($adresse).", ".$mat["Code_postal"].", ".$mat["commune"] ?></b>
-					</div>
+					</div>	
+					
 				</header>    
 				<div class="content">
 					<div class="col">
 						<b>
-							<?php $str= $mat["Activite_etablissement"];
+							<?php 
 							if(strlen($str)==62){
 								echo substr($str, 0, 31). ' ' . substr($str, 31);
 							}else echo $str;

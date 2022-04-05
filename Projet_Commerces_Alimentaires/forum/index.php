@@ -24,7 +24,9 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 
 ?>
 </head>
-<body>
+<body class="forum">
+
+	<div class="img-background">
 
 	<!-- MENU -->
     <nav class="navbar row">
@@ -48,7 +50,7 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 						<a class="nav-link" href="../historique/historique.php">Historique</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../historique/historique.php">Favori</a>
+						<a class="nav-link" href="../favori/">Favori</a>
 					</li>
 					<?php  } ?>
 				</ul>
@@ -59,6 +61,7 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 					<li class="nav-item dropdown">
 						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
 						<div class="dropdown-content">
+								<a href='../session/profil.php'>Mon profil</a>
 								<a href='../session/deconnexion.php'>Se deconnecter</a>
 						</div>
 					</li>
@@ -86,7 +89,7 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 					</button>
 					<button id="close" class="ouvrir-fermer">
 						<i class="fa fa-minus" aria-hidden="true"></i>
-						Ajouter un commentaire
+						Fermer ajouter un commentaire
 					</button> 
 				</div>
 			<?php } ?>
@@ -115,13 +118,13 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 		<?php } ?>
 		<!-- ----------------------------------- -->
 		
-		<div class="avis">
+		<div class="avis mt-4">
             <?php 
 				if($count > 0){ //si on a un commentaire afficher
 					while ($ligne = $rep ->fetch()) {	
 						?>					
-						<div class="col-forum">
-							<div class="d-flex">
+						<div class="col-forum mb-4">
+							<div class="avis">
 								<div class="p-photo"><i class="fa fa-user-circle-o" aria-hidden="true"></i></div>
 								<p class="nom-date"><?php echo $ligne['pseudo']." " ?><small class="text-light"><?php echo date('d/m/Y H:i:s', strtotime($ligne['date'])); ?></small></p>
 							</div> 
@@ -138,7 +141,6 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 									</div>								
 							<?php } ?>
 						</div>
-						<div class="ligne"></div>
 			<?php
 					}
 				}else{ //si on a pas des commentaires
@@ -149,6 +151,7 @@ $count = $rep ->rowCount(); //compter s'il y en a des resultats
 		</div>	
 			
 	</main>
+	</div>
 	<script>
 	$(document).ready(function() {
 		$("#close").css({"display": "none"});

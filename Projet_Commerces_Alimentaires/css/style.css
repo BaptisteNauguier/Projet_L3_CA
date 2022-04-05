@@ -145,21 +145,21 @@ padding: 14px;
 .submit-input input{
 	width: 100%;
 	border-radius: 10px;
-	background-color: #009d71;
+	background-color: #72CC50;
 	color: white;
 	padding: 10px;
 	border: none;
 	cursor: pointer;
-	border:  1px solid #009d71;
+	border:  1px solid #72CC50;
 }
 
 .submit-input input:hover{
 	background-color: white;
-	color: #009d71;
+	color: #72CC50;
 }
 
 .s-inscrire{
-	color: #009d71 !important;
+	color: #72CC50 !important;
 }
 
 
@@ -340,6 +340,10 @@ main{
 	margin-left: auto;
     margin-right: auto;
     max-width: 950px;
+}
+
+.underline{
+	text-decoration: underline;
 }
 
 .d-flex{
@@ -731,6 +735,7 @@ color: white;
 font-style: italic;
 border: 1px dotted white;
   background-color: #82A6CD;
+  margin-top: 0;
 }
 
 .flexCentre {
@@ -823,9 +828,11 @@ height: 100px;
 /*Header*/
 
 .bordureSearch {
-  width: 400px;
-  border-radius: 10px;
-  border: 0.5px solid #f2f2f2;
+    width: 400px;
+    margin-left: auto;
+    border-radius: 10px;
+    border: 0.5px solid #f2f2f2;
+    margin-right: auto;
 }
 
 .paddingSearch {
@@ -953,17 +960,23 @@ height: 100px;
   text-align: center;
   font-size: 30px;
   color: white;
+  margin-top: 0;
+  padding-top: 20px;
 }
 
 .rechercherFiltrer {
   border : none;
   cursor: pointer;
   background-color: blue;
+  color:white;
 }
-.backgroundFiltrer1{
-  background-image: url(../img/photoFiltrer14.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+
+.head-filtre {
+background-image: url(../img/photoFiltrer14.jpg);
+background-repeat: no-repeat;
+padding-bottom: 60px;
+background-size: cover;
+width: 100%;
 }
 
 .plusGros{
@@ -998,9 +1011,9 @@ height: 100px;
 
 .div_hist{
   margin: auto;
-  width: 1015px;
+  width: 1030px;
   overflow-y: scroll;
-  height: 600px;
+  height: 400px;
 }
 
 /* -------- FIN PARTIE HISTORIQUE -------- */
@@ -1035,7 +1048,7 @@ text-align: center;
 }
 
 .main-index .plus-pop {
-padding: 30px;
+padding: 20px;
 width: 400px;
 display: inline-block; /* segmentation en ligne des div */
 }

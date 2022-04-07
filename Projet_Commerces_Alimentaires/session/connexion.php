@@ -7,8 +7,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<link href="../css/style.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- simbole de searchbar -->
-		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/location.js"></script>
 
         <title>Se connecter</title>
         <meta charset="utf-8">
@@ -47,7 +45,7 @@
 						<a class="nav-link" href="../historique/historique.php">Historique</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../favori/">Favori</a>
+						<a class="nav-link" href="../historique/historique.php">Favori</a>
 					</li>
 					<?php  } ?>
 				</ul>
@@ -58,7 +56,6 @@
 					<li class="nav-item dropdown">
 						<a class="nav-link dropbtn" href="#">Bienvenue <?php echo $_SESSION['utilisateur']['pseudo'] ?> ▼</a>
 						<div class="dropdown-content">
-								<a href='./profil.php'>Mon profil</a>
 								<a href='./deconnexion.php'>Se deconnecter</a>
 						</div>
 					</li>
@@ -77,7 +74,6 @@
 
         <main> 
 		<h2 class="text-center">Connexion</h2>
-		<p class="alert erreur text-center"><?php if(isset($_GET['message'])) echo $_GET['message'] ?></p>
 		<?php if(isset($_SESSION['utilisateur'])) { ?>
 			<p>Vous êtes déjà connecté! <a href="../trouve/">Commencez votre recherche</a></p>
 		<?php } else{ ?>
@@ -87,20 +83,21 @@
 					<span class="text-light">Adresse e-mail</span><br>
 					<div class="con-input">
 						<i class="fa fa-envelope-o ml-3" aria-hidden="true"></i>	
-						<input type="text" required name="mail" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" title="L'adresse mail n'est pas valide" name="mail" value="" placeholder="nom@mail.com"/>
+						<input type="text" name="mail" value=""/>
 					</div>
 					<span class="text-light">Mot de passe</span><br>					
 					<div class="con-input">
 						<i class="fa fa-lock ml-3" aria-hidden="true"></i>	
-						<input type="password" required name="mdp" value=""/>
+						<input type="password" name="mdp" value=""/>
 					</div>
-					<input type="hidden" name="lat" class="lat" /> 
-					<input type="hidden" name="lng" class="lng" />
 					<div class="submit-input">
 						<input type="submit" name="submit" value="Se connecter">
 					</div>
 
-				</form>				
+				</form>
+				<p class="text-center">
+					Mot de passe oublié? <a class="s-inscrire" href="../compte/mdp_oublie.php">Changer</a>
+				</p>				
 				<p class="text-center">
 					Pas encore inscrit? <a class="s-inscrire" href="../compte/inscription.php">S'inscrire</a>
 				</p>
@@ -109,18 +106,5 @@
 		</main>
     
     </body>
-   
-   <script>
-   
-   $(document).ready( function() {
-	    navigator.geolocation.getCurrentPosition(maPosition, erreurPosition,{maximumAge:600000,enableHighAccuracy:true});
-		
-		if($(".alert").is(':empty')){			
-			$(".erreur").hide();
-		}else{
-			$(".erreur").show().delay(4000).fadeOut();
-		}
-    });
-	
-</script>
+
 </html>
